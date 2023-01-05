@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequest;
+use App\Http\Requests\UpdateRequest;
 
 class TodoController extends Controller
 {
@@ -22,12 +23,12 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function update(TodoRequest $request)
+    public function update(UpdateRequest $request)
     {
-        $todo = Todo::find($request->id);
+        $todo = Todo::find($request->id)->all();
         $form = $request->select('name');
         unset($form['_token']);
-        Todo::where('name',$request->name)->update($form);
+        Todo::where('new-name',$request->name)->update($form);
         return redirect('/');
     }
 

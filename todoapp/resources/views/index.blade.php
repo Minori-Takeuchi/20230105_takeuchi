@@ -29,11 +29,13 @@
             <td>{{$todo->created_at}}</td>
             <form action="/update" method="post">
             @csrf
+              <input type="hidden" name="id" value="{{$todo->id}}">
               <td><input type="text" class="input-update" name="new-name" value="{{$todo->name}}"></td>
               <td><button class="btn-update">更新</button></td>
             </form>
             <form action="/delete" method="post">
             @csrf
+              <input type="hidden" name="id" value="{{$todo->id}}">
               <td><button class="btn-delete">削除</button></td>
             </form>
             </tr>
